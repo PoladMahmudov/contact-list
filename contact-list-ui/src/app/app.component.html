@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <h1>Contact list</h1>
+</mat-toolbar>
+<section>
+  <div class="filter" matTooltip="Expressions are possible *text or text*">
+    <mat-form-field>
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort (matSortChange)="handleSortEvent($event)">
+      <!-- Avatar Column -->
+      <ng-container matColumnDef="avatarUrl">
+        <th class="th-avatar" mat-header-cell *matHeaderCellDef> Avatar</th>
+        <td class="td-avatar" mat-cell *matCellDef="let element">
+          <img alt="avatar" height="15%" [attr.src]="element.avatarUrl">
+        </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons (page)="handlePageEvent($event)"></mat-paginator>
+</section>
