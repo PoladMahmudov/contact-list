@@ -4,6 +4,8 @@ import {MatSort, Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {User} from './app.model';
 import {AppService} from './app.service';
+import {FormControl} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +15,7 @@ import {AppService} from './app.service';
 export class AppComponent implements AfterViewInit {
 
   nameCriteria = '';
+  filterControl = new FormControl();
   displayedColumns: string[] = ['avatarUrl', 'name'];
   dataSource = new MatTableDataSource<User>([]);
 
@@ -24,11 +27,13 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.getUsers();
-  }
 
-  applyFilter(event: Event): void {
-    this.nameCriteria = (event.target as HTMLInputElement).value;
-    this.getUsers(this.nameCriteria, 0, this.paginator.pageSize);
+    this.filterControl.valueChanges
+      .pipe(debounceTime(1000))
+      .subscribe(value => {
+        this.nameCriteria = value;
+        this.getUsers(this.nameCriteria, 0, this.paginator.pageSize);
+      });
   }
 
   handleSortEvent(sort: Sort): void {

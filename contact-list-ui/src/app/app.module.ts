@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     BrowserAnimationsModule,
     HttpClientModule,
     MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatPaginatorModule,
     MatSortModule,
     MatToolbarModule,

@@ -28,7 +28,7 @@ public class UserController {
         return userService.getAll(nameCriteria, pageable)
                 .map(user -> UserDto.builder()
                         .name(user.getName())
-                        .avatarUrl(user.getAvatar().toString())
+                        .avatarUrl(user.getAvatar())
                         .build());
     }
 }

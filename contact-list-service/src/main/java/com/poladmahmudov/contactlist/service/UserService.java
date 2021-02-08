@@ -1,7 +1,5 @@
 package com.poladmahmudov.contactlist.service;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import com.poladmahmudov.contactlist.persistence.domain.UserPo;
 import com.poladmahmudov.contactlist.persistence.repository.UserRepository;
 import com.poladmahmudov.contactlist.persistence.specs.UserSpecification;
